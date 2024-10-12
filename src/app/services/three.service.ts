@@ -42,6 +42,8 @@ export class ThreeService {
   loadDefaultModel() {
     const head = this.assetService.getDefaultHeadAsset();
     this.loader.load(head.path, (model) => {
+      model.scene.scale.set(0.2, 0.2, 0.2);
+      model.scene.position.set(0, 2, 0);
       this.scene.add(model.scene);
     });
   }
@@ -70,7 +72,7 @@ export class ThreeService {
 
   setControls(): void {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.minDistance = 2; //Controling max and min for ease of use
+    this.controls.minDistance = 2; 
     this.controls.maxDistance = 7;
     this.controls.minPolarAngle = 0;
     this.controls.maxPolarAngle = Math.PI / 2 - 0.1;
@@ -84,7 +86,7 @@ export class ThreeService {
   setThreeScene(): void {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera( 75, (6/5) * (this.width / this.height), 0.001, 1000 );
-    this.camera.position.z = 5;
+    this.camera.position.z = 7;
     this.camera.position.x = -1;
     this.camera.position.y = 2;
     this.renderer = new THREE.WebGLRenderer();
