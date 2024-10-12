@@ -1,10 +1,41 @@
 {
     "heads": [
-        { "ID": 1, "name": "default", "path": "/assets/models/heads/default.glb", "icon": "/assets/icons/heads/default.png", "file": "gltf", "type": "head" }
+        { 
+            "ID": 1, 
+            "name": "default", 
+            "path": "/assets/models/heads/default.glb", 
+            "icon": "/assets/icons/heads/default.png", 
+            "file": "gltf", 
+            "type": "head" 
+        }
     ],
     "torsos": [
-        { "ID": 2, "name": "default", "path": "/assets/models/torsos/default.obj", "icon": "/assets/icons/heads/default.jpg", "file": "obj", "type": "torso" }
+        { 
+            "ID": 2, 
+            "name": "default", 
+            "path": "/assets/models/torsos/default.obj", 
+            "icon": "/assets/icons/heads/default.jpg", 
+            "file": "obj", 
+            "type": "torso" 
+        }
     ],
-    "arms": [],
+    "arms": [
+        { 
+            "ID": 3, 
+            "name": "default", 
+            "path": "/assets/models/arms/default.glb", 
+            "icon": "/assets/icons/arms/default.png", 
+            "file": "gltf", 
+            "type": "lArm" 
+        },
+        { 
+            "ID": 4, 
+            "name": "default", 
+            "path": "/assets/models/arms/default.glb", 
+            "icon": "/assets/icons/arms/default.png", 
+            "file": "gltf", 
+            "type": "rArm" 
+        }
+    ],
     "legs": []
 }

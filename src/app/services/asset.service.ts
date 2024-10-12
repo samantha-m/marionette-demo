@@ -8,8 +8,12 @@ import { Asset } from '../models/asset';
 export class AssetService {
 
   assetConfiguration: any = (data as any).default;
-  constructor() { 
-    
+  constructor() {}
+
+  getDefaultLeftArm() {
+    return this.assetConfiguration["arms"].filter((a: Asset) => {
+      return a.type === "lArm";
+    })[0];
   }
 
   getDefaultTorsoAsset(): Asset {
@@ -18,6 +22,12 @@ export class AssetService {
 
   getDefaultHeadAsset(): Asset {
     return this.assetConfiguration["heads"][0];
+  }
+
+  getLeftArmAssets(): Asset[] {
+    return this.assetConfiguration["arms"].filter((a: Asset) => {
+      return a.type === "lArm";
+    });
   }
 
   getTorsoAssets(): Asset[] {

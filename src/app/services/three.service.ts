@@ -54,6 +54,13 @@ export class ThreeService {
         model.position.z -= 0.5;
         this.scene.add(model);
         break;
+      case "lArm":
+        model.position.x += 0.1;
+        model.position.y -= 3.25;
+        model.position.z -= 0.5;
+        model.scale.set(3, 3, 3);
+        this.scene.add(model);
+        break;
       default:
         break;
     }
@@ -77,7 +84,8 @@ export class ThreeService {
   loadDefaultModel() {
     const head = this.assetService.getDefaultHeadAsset();
     const torso = this.assetService.getDefaultTorsoAsset();
-    const assets = [head, torso];
+    const lArm = this.assetService.getDefaultLeftArm();
+    const assets = [head, torso, lArm];
     assets.forEach((asset) => {
       switch (asset.file) {
         case "gltf":
