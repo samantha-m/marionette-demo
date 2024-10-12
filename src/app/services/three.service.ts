@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { AssetService } from './asset.service';
+import { Asset } from '../models/asset';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class ThreeService {
   renderer!: THREE.WebGLRenderer;
   envLight!: THREE.HemisphereLight;
   pointLights: THREE.PointLight[] = [];
-  loader!: GLTFLoader;
+  gltfLoader!: GLTFLoader;
+  objLoader!: OBJLoader;
   controls!: OrbitControls;
   model = {
     root: <any>null,
@@ -39,13 +42,54 @@ export class ThreeService {
     }); 
   }
 
+  loadModelIntoScene(asset: Asset, model: any) {
+    switch (asset.type) {
+      case "head":
+        model.scale.set(0.125, 0.125, 0.125);
+        model.position.set(0, 2, 0);
+        this.scene.add(model);
+        break;
+      case "torso":
+        model.position.y -= 0.15;
+        model.position.z -= 0.5;
+        this.scene.add(model);
+        break;
+      default:
+        break;
+    }
+
+  }
+
+  loadOBJModel(asset: Asset) {
+    this.objLoader.load(asset.path, (model) => {
+      const obj = model;
+      this.loadModelIntoScene(asset, obj);
+    });
+  }
+
+  loadGLTFModel(asset: Asset) {
+    this.gltfLoader.load(asset.path, (model) => {
+      const obj = model.scene;
+      this.loadModelIntoScene(asset, obj);
+    });
+  }
+
   loadDefaultModel() {
     const head = this.assetService.getDefaultHeadAsset();
-    this.loader.load(head.path, (model) => {
-      model.scene.scale.set(0.2, 0.2, 0.2);
-      model.scene.position.set(0, 2, 0);
-      this.scene.add(model.scene);
-    });
+    const torso = this.assetService.getDefaultTorsoAsset();
+    const assets = [head, torso];
+    assets.forEach((asset) => {
+      switch (asset.file) {
+        case "gltf":
+          this.loadGLTFModel(asset);
+          break;
+        case "obj":
+          this.loadOBJModel(asset);
+          break;
+        default:
+          break;
+      }
+    })
   }
 
   setModelRoot() {
@@ -80,7 +124,8 @@ export class ThreeService {
   }
 
   setLoader(): void {
-    this.loader = new GLTFLoader();
+    this.gltfLoader = new GLTFLoader();
+    this.objLoader = new OBJLoader();
   }
 
   setThreeScene(): void {

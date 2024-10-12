@@ -1,8 +1,10 @@
 {
     "heads": [
-        { "ID": 1, "name": "default", "path": "/assets/models/heads/default.glb", "icon": "/assets/icons/heads/default.png", "type": "head" }
+        { "ID": 1, "name": "default", "path": "/assets/models/heads/default.glb", "icon": "/assets/icons/heads/default.png", "file": "gltf", "type": "head" }
     ],
-    "torsos": [],
+    "torsos": [
+        { "ID": 2, "name": "default", "path": "/assets/models/torsos/default.obj", "icon": "/assets/icons/heads/default.jpg", "file": "obj", "type": "torso" }
+    ],
     "arms": [],
     "legs": []
 }

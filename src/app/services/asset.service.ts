@@ -12,8 +12,16 @@ export class AssetService {
     
   }
 
+  getDefaultTorsoAsset(): Asset {
+    return this.assetConfiguration["torsos"][0];
+  }
+
   getDefaultHeadAsset(): Asset {
     return this.assetConfiguration["heads"][0];
+  }
+
+  getTorsoAssets(): Asset[] {
+    return this.assetConfiguration["torsos"];
   }
 
   getHeadAssets(): Asset[] {
