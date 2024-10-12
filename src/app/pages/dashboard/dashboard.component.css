@@ -1,0 +1,12 @@
+.horizontal-responsive {
+    display: flex;
+    flex-direction: row;
+}
+
+#app-wrapper {
+    height: 100%;
+}
+
+#viewer, #editor {
+    width: 50%;
+}
