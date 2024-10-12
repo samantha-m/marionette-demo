@@ -1,10 +1,8 @@
-[
-    {
-        "heads": [
-            { "ID": 1, "name": "default", "asset": "/assets/models/heads/default.glb", "icon": "/assets/icons/heads/default.png" }
-        ],
-        "torsos": [],
-        "arms": [],
-        "legs": []
-    }
-]
+{
+    "heads": [
+        { "ID": 1, "name": "default", "path": "/assets/models/heads/default.glb", "icon": "/assets/icons/heads/default.png" }
+    ],
+    "torsos": [],
+    "arms": [],
+    "legs": []
+}
