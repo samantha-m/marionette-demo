@@ -9,6 +9,11 @@ import { Asset } from '../../models/asset';
 })
 export class DashboardComponent implements OnInit {
 
+  viewer = {
+    scene: null,
+    camera: null,
+    renderer: null
+  }
   constructor(
     private assetService: AssetService
   ) {}
