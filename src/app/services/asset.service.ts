@@ -12,6 +12,10 @@ export class AssetService {
     
   }
 
+  getDefaultHeadAsset(): Asset {
+    return this.assetConfiguration["heads"][0];
+  }
+
   getHeadAssets(): Asset[] {
     return this.assetConfiguration["heads"];
   }

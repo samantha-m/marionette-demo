@@ -1,24 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AssetService } from '../../services/asset.service';
-import { Asset } from '../../models/asset';
+import { ThreeService } from '../../services/three.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit {
 
-  viewer = {
-    scene: null,
-    camera: null,
-    renderer: null
-  }
+  @ViewChild("viewer") viewer!: ElementRef;
+  viewerEl!: HTMLElement;
   constructor(
-    private assetService: AssetService
+    private assetService: AssetService,
+    private threeService: ThreeService
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.viewerEl = this.viewer.nativeElement;
+    this.threeService.run(this.viewerEl);
   }
 
 }
